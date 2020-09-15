@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <title>우리지역 안심식당 2020</title>
   </head>
   <body>
@@ -15,6 +17,21 @@
         수저 관리 ③종사자 마스크 착용 여부) 준수 인증을 받은 안심식당을
         찾아보세요
       </p>
+
+      <div class="flex">
+        <form class="flex" id="submit">
+          <input type="text" id="search" placeholder="지역을 입력해 주세요">
+          <button class="search-btn" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+
+      <div class="result">
+        <div id="result-name"></div>
+        <div id="result-addr"></div>
+        <div id="result-contact"></div>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>
