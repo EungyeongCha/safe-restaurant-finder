@@ -17,8 +17,10 @@ function searchRestaurant(e) {
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
+
+              resultHeading.innerHTML = `<h2>'${term}'지역의 안심식당 입니다:</h2>`;
     
-              // destrucuring
+              // 검색결과 array를 destrucuring후 정의한 array에 저장
                 const { result, row } = data.Grid_20200713000000000605_1;
                 let title = [], addr1 = [], addr2 = [], tel = [];
                 for (let i = 0; i < row.length; i++) {
@@ -28,21 +30,26 @@ function searchRestaurant(e) {
                     tel.push(row[i].RELAX_RSTRNT_TEL);
                 }
     
-              resultHeading.innerHTML = `<h2>'${term}'지역의 안심식당 입니다:</h2>`;
-              resultContent.insertAdjacentHTML('afterend', `<div>${title[1]} ${addr1[1]}${addr2[1]}</div>`);
-              resultContent.insertAdjacentHTML('afterend', `<div>${title[1]} ${addr1[1]}${addr2[1]}</div>`);
+              
+              
         
 
-            // // 검색내용 없을경우 메시지 출력
-            // if (row.length < 1) {
-            //     resultHeading.innerHTML = `<h2>검색결과가 없습니다. 다시 입력해주세요.</h2>`;
-            // } else {
-            //     for(let titleName of title) {
-            //         resultContent.innerHTML(
-            //             `<div>${titleName}</div>`
-            //         );
-            //     }
-            // }
+            // 검색내용 없을경우 메시지 출력
+            if (row.length < 1) {
+                resultHeading.innerHTML = `<h2>검색결과가 없습니다. 다시 입력해주세요.</h2>`;
+            } else {
+                    
+                for(let item in row) {
+                      resultContent.innerHTML='<div class="resultSubHead">상세정보(상호명, 주소, 연락처)</div>';
+                      resultContent.insertAdjacentHTML('afterend', 
+                      `<div class="resultItem">
+                        <div class="title">${title[item]}</div>
+                        <div class="addr">${addr1[item]}${addr2[item]}</div>
+                        <div class="tel">${tel[item]}</div> 
+                      </div>`
+                      );
+                }
+            }
             });
     } else {
         alert('검색어를 입력해 주세요');
