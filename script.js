@@ -1,5 +1,8 @@
+// https://crossorigin.me/
+// https://cors-anywhere.herokuapp.com/
 const submit = document.getElementById('submit');
 const search = document.getElementById('search');
+const result = document.getElementById('result');
 const resultHeading = document.getElementById('result-heading');
 const resultContent = document.getElementById('result-content');
 
@@ -12,7 +15,7 @@ function searchRestaurant(e) {
 
   if (term.trim()) {
     fetch(
-      `https://cors-anywhere.herokuapp.com/http://211.237.50.150:7080/openapi/11ae7998f8ebf7af8ecdf1328368115cbec9ce4b163d3dcf512df6b98af95baf/json/Grid_20200713000000000605_1/1/999?RELAX_SI_NM=${term}`
+      `http://211.237.50.150:7080/openapi/11ae7998f8ebf7af8ecdf1328368115cbec9ce4b163d3dcf512df6b98af95baf/json/Grid_20200713000000000605_1/1/100?RELAX_SI_NM=${term}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -22,12 +25,16 @@ function searchRestaurant(e) {
 
         // 검색결과 array를 destrucuring후 정의한 array에 저장
         const { result, row } = data.Grid_20200713000000000605_1;
+
         let title = [],
+          detail = [],
           addr1 = [],
           addr2 = [],
           tel = [];
+
         for (let i = 0; i < row.length; i++) {
           title.push(row[i].RELAX_RSTRNT_NM);
+          detail.push(row[i].RELAX_GUBUN_DETAIL);
           addr1.push(row[i].RELAX_ADD1);
           addr2.push(row[i].RELAX_ADD2);
           tel.push(row[i].RELAX_RSTRNT_TEL);
@@ -42,11 +49,14 @@ function searchRestaurant(e) {
               '<div class="resultSubHead">상세정보(상호명, 주소, 연락처)</div>';
             resultContent.insertAdjacentHTML(
               'afterend',
-              `<div class="resultItem">
+              `
+                <div class="resultItem">
                         <div class="title">${title[item]}</div>
+                        <div class="detail">${detail[item]}</div>
                         <div class="addr">${addr1[item]}${addr2[item]}</div>
-                        <div class="tel">${tel[item]}</div> 
-                      </div>`
+                        <div class="tel">${tel[item]}</div>
+                </div>
+              </div>`
             );
           }
         }

@@ -1,37 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
+:root {
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background: #fff;
-    font-family: 'Nanum Gothic', sans-serif;
+  margin: 0;
+  background: #fff;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .container {
-    margin: auto;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
-    text-align: center;
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 800px;
+  /* width: 100vw;
+  height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
 }
 
 .container h2 {
-    font-size: 18px;
-    font-weight: normal;
-}   
+  font-size: 18px;
+  padding: 0;
+  margin: 10px 0;
+  font-weight: normal;
+}
+
+.container h1 {
+  font-size: 32px;
+  padding: 0;
+  margin: 0 0 30px 0;
+}
 
 .container p {
-    font-size: 12px;
+  font-size: 14px;
+  line-height: 2em;
+  margin: 0 0 0 40px 0;
 }
 
 .flex {
-    display: flex;
-    margin-top: 10px;
+  display: flex;
+  margin-top: 10px;
 }
 
 input,
@@ -41,11 +58,11 @@ button {
   border-bottom-left-radius: 4px;
   font-size: 14px;
   padding: 8px 10px;
-  margin: 0;
+  margin: 0 0 30px 0;
 }
 
 input[type='text'] {
-  width: 300px;
+  width: 320px;
   outline: none;
 }
 
@@ -57,28 +74,80 @@ input[type='text'] {
   border-bottom-right-radius: 4px;
 }
 
+.result-heading h2 {
+  font-weight: 600;
+}
+
 .resultSubHead {
-  margin-top: 20px;
-  margin-bottom: 15px;;
+  margin: 20px 0;
 }
 
 .resultItem {
   margin: auto;
   font-size: 14px;
-  width: 70%;
-  padding: 10px;
+  width: 100%;
+  /* height: 20vh; */
+  padding: 40px 0;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ccc;
-
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: var(--box-shadow);
 }
 
-.title{
+.title {
   font-size: 16px;
   font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
-.addr{
-  margin-bottom: 5px;
-  font-size: 13px;
 
+.detail {
+  position: absolute;
+  background-color: #ccc;
+  padding: 7px;
+  right: 4%;
+  top: 8%;
+}
+
+.addr {
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+@media screen and (max-width: 500px) {
+  .container p span {
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .container p span.spacing {
+    margin-top: 16px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .container p {
+    font-size: 12px;
+  }
+
+  input[type='text'] {
+    width: 100%;
+    outline: none;
+  }
+
+  .resultItem {
+    margin: auto;
+    font-size: 14px;
+    width: 100%;
+    height: 30vh;
+    padding: 40px 0;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    position: relative;
+  }
+
+  .addr {
+    font-size: 12px;
+  }
 }
