@@ -80,6 +80,12 @@ input[type='text'] {
   border-bottom-right-radius: 4px;
 }
 
+.clear-btn {
+  cursor: pointer;
+  margin-left: 5px;
+  border-radius: 5px;
+}
+
 .result-heading h2 {
   font-weight: 600;
 }
