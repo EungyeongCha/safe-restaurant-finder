@@ -1,5 +1,6 @@
 // https://crossorigin.me/
 // https://cors-anywhere.herokuapp.com/
+// `http://211.237.50.150:7080/openapi/11ae7998f8ebf7af8ecdf1328368115cbec9ce4b163d3dcf512df6b98af95baf/json/Grid_20200713000000000605_1/1/100?RELAX_SI_NM=${term}`
 const submit = document.getElementById('submit');
 const search = document.getElementById('search');
 const result = document.getElementById('result');
@@ -44,21 +45,16 @@ function searchRestaurant(e) {
         if (row.length < 1) {
           resultHeading.innerHTML = `<h2>검색결과가 없습니다. 다시 입력해주세요.</h2>`;
         } else {
-          for (let item in row) {
-            resultContent.innerHTML =
-              '<div class="resultSubHead">상세정보(상호명, 주소, 연락처)</div>';
-            resultContent.insertAdjacentHTML(
-              'afterend',
-              `
-                <div class="resultItem">
-                        <div class="title">${title[item]}</div>
-                        <div class="detail">${detail[item]}</div>
-                        <div class="addr">${addr1[item]}${addr2[item]}</div>
-                        <div class="tel">${tel[item]}</div>
-                </div>
-              </div>`
-            );
-          }
+          let output = '';
+          row.forEach((item, index) => {
+            output += `<div class="resultItem">
+            <div class="title">${title[index]}</div>
+            <div class="detail">${detail[index]}</div>
+            <div class="addr">${addr1[index]}${addr2[index]}</div>
+            <div class="tel">${tel[index]}</div>
+    </div>`;
+          });
+          resultContent.innerHTML = output;
         }
       });
   } else {
